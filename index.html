@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Список задач</title>
+  <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body>
+
+  <div class="container" id="app">
+    <div class="card">
+
+      <h1>Список задач</h1>
+      <div class="form-control">
+        <input v-model.trim="task" @keypress.enter="addTask()" />
+
+      </div>
+      <button @click="addTask()" class="btn danger">Добавить</button>
+
+      <hr />
+
+      <ul v-if="checkTheTaskList()" class="list">
+
+        <li v-for=" (task,index) in taskList" class="list-item">
+          <span class="bold ">
+            {{task}}
+          </span>
+
+          <div>
+            <button @click="mark($event)" class="btn danger">пометить</button>
+            <button @click="deleteTask(index)" class=" btn danger">удалить</button>
+          </div>
+
+        </li>
+
+        <hr />
+
+        <li>
+          <strong>
+            Общее количество:{{taskList.length}}
+          </strong>
+          | Удвоенное: {{favoredTasks}}
+        </li>
+
+      </ul>
+
+      <div v-else>Заметок пока нет. Добавьте первую</div>
+
+    </div>
+  </div>
+
+  <script src=" https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
